@@ -18,13 +18,26 @@ int IR1;
 int IR2;
 int IR3;
 
+//Pendefinisian nomor pin untuk encoder
+#define encoderA /*No Pin*/
+#define encoderB /*No Pin*/
+
+//Deklarasi untuk encoder
+long encoderPosition = 0;
+float rpm,speed;
+int interval=100;
+unsigned int time,newTime;
+
 void setup() {
   // put your setup code here, to run once:
   pinMode(IR_Sensor1, INPUT); //Pin didefinisikan sebagai input dari sensor 1
   pinMode(IR_Sensor2, INPUT); 
-  pinMode(IR_Sensor3, INPUT)
-  
+  pinMode(IR_Sensor3, INPUT);
 
+  pinMode(encoderA, INPUT);
+  pinMode(encoderB, INPUT);
+  attachInterrupt(/*No Pin Encoder*/, triggerEncoder, CHANGE);
+  Serial.begin (9600);
 }
 
 void loop() {
@@ -62,4 +75,20 @@ void loop() {
         
   }
 
+  newtime=millis();
+  if (newTime - time >= interval){
+    rpm = (encoderPosition/30.00)/0.001666667;
+    speed = (2*3.14*rpm)/60
+    time = newTime;
+    encoderPosition = 0;
+  }
+
+}
+
+void triggerEncoder(){
+  if (digitalRead(encoderA)==digitalRead(encoderB)){
+    encoderPosition--;
+  }else{
+    encoderPosition++;
+  }
 }
