@@ -4,7 +4,7 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-#Deklarasi Pin Motor
+//#Deklarasi Pin Motor
 #define LEFT_MOTOR_PIN //ganti nomor Pin
 #define RIGHT_MOTOR_PIN //ganti nomor Pin
 #define LEFT_PS_PIN //ganti nomor Pin
